@@ -1060,3 +1060,4 @@
 [2026-06-07 23:38:58] [INFO] GET /api/employees
 [2026-06-07 23:39:03] [INFO] POST /api/auth/logout
 [2026-06-07 23:39:03] [INFO] User 'acpl123@gmail.com' logged out.
+[2026-06-08 00:05:24] [INFO] Server running on port 5000
