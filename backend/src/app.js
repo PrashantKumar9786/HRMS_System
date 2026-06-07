@@ -14,7 +14,11 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://hrms-system-two.vercel.app"],
+    origin: [
+      "http://localhost:5173",
+      "https://hrms-system-two.vercel.app",
+      /\.vercel\.app$/, // allows all vercel preview URLs
+    ],
     credentials: true,
   }),
 );
