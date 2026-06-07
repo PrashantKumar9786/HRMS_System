@@ -1,0 +1,64 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../generated/prisma"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Organisation {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+
+  employees Employee[]
+  teams     Team[]
+  logs      Log[]
+}
+
+model Employee {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  role      String
+  orgId     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  org   Organisation   @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  teams TeamEmployee[]
+}
+
+model Team {
+  id        String   @id @default(uuid())
+  name      String
+  orgId     String
+  createdAt DateTime @default(now())
+
+  org     Organisation   @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  members TeamEmployee[]
+}
+
+model TeamEmployee {
+  employeeId String
+  teamId     String
+  assignedAt DateTime @default(now())
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  team     Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@id([employeeId, teamId])
+}
+
+model Log {
+  id        String   @id @default(uuid())
+  orgId     String
+  action    String
+  createdAt DateTime @default(now())
+
+  org Organisation @relation(fields: [orgId], references: [id], onDelete: Cascade)
+}
