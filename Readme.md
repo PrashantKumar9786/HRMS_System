@@ -3,8 +3,6 @@
 > Full-Stack Developer Assignment | Node.js · React · PostgreSQL · Prisma
 
 **Live Demo:** https://hrms-system-two.vercel.app
-**Backend API:** https://hrms-backend-i768.onrender.com
-
 ---
 
 ## Overview
